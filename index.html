@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubre el menú de Santo Taco y prepara tu pedido por WhatsApp.">
+  <meta name="theme-color" content="#11120f">
+  <title>SANTO TACO | Tacos con actitud</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #11120f;
+      --card: #1b1d18;
+      --green: #c8f169;
+      --white: #f7f7ef;
+      --muted: #a5a69b;
+      --border: #33352c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(17, 18, 15, .96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span,
+    h1 span {
+      color: var(--green);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--green);
+      color: #17190f;
+      font-weight: 800;
+      transition: transform .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white);
+    }
+
+    .hero {
+      padding: 80px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      letter-spacing: -4px;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 470px;
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .image-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      background: var(--green);
+      color: #17190f;
+      font-weight: 800;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--green);
+      font-size: 1.35rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    section.content-section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -2px;
+    }
+
+    .section-heading p {
+      max-width: 400px;
+      color: var(--muted);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .filter-button {
+      padding: 9px 16px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: #17190f;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .menu-card {
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--green);
+    }
+
+    .menu-card img {
+      display: block;
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .menu-info {
+      padding: 20px;
+    }
+
+    .menu-info h3 {
+      margin-bottom: 9px;
+      font-size: 1.25rem;
+    }
+
+    .menu-info p {
+      min-height: 48px;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 18px;
+    }
+
+    .menu-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .add-button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--green);
+      color: #17190f;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .promo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border-radius: 18px;
+      background: var(--green);
+      color: #17190f;
+    }
+
+    .promo-content {
+      padding: 40px;
+      align-self: center;
+    }
+
+    .promo h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 15px;
+    }
+
+    .promo p {
+      margin-bottom: 22px;
+    }
+
+    .promo .button {
+      background: #17190f;
+      color: white;
+    }
+
+    .promo img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .about-grid img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .about-grid h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 20px;
+    }
+
+    .about-grid p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+    }
+
+    .contact-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* CARRITO */
+
+    .cart-bar {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      width: min(370px, calc(100% - 30px));
+      max-height: 75vh;
+      overflow-y: auto;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 8px 30px #0006;
+    }
+
+    .cart-bar.visible {
+      display: flex;
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cart-header h3 {
+      font-size: 1.2rem;
+    }
+
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-info {
+      min-width: 0;
+    }
+
+    .cart-item-info strong {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .cart-item-info small {
+      color: var(--muted);
+    }
+
+    .remove-button {
+      flex-shrink: 0;
+      padding: 7px 10px;
+      border: 1px solid #784343;
+      border-radius: 7px;
+      background: transparent;
+      color: #ff9999;
+      font-size: .8rem;
+    }
+
+    .cart-total {
+      color: var(--green);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    #orderButton {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--green);
+      color: #17190f;
+      font-weight: 800;
+    }
+
+    @media (max-width: 800px) {
+      .hero,
+      .about-grid,
+      .promo {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero-image img {
+        height: 320px;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .promo img {
+        max-height: 300px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: .78rem;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 8px;
+      }
+
+      .stat strong {
+        font-size: 1rem;
+      }
+
+      .stat span {
+        font-size: .75rem;
+      }
+
+      .promo-content {
+        padding: 28px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-bar {
+        right: 15px;
+        bottom: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#inicio">SANTO<span>TACO.</span></a>
+
+      <nav>
+        <a href="#menu">Menú</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a class="button nav-cta" href="#menu">Ver menú ↗</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="container hero" id="inicio">
+      <div>
+        <span class="eyebrow">● Tacos hechos con actitud</span>
+
+        <h1>NO SON<br>TACOS.<br><span>SON SANTOS.</span></h1>
+
+        <p>
+          Tortillas recién hechas, ingredientes de calidad y salsas
+          que no se olvidan. Bienvenido al lado bueno del taco.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="button" href="#menu">Explorar menú ↗</a>
+          <a class="button secondary" href="#nosotros">Nuestra historia</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1000&q=85"
+          alt="Tacos mexicanos"
+        >
+        <div class="image-label">🔥 Sabor que se respeta</div>
+      </div>
+    </section>
+
+    <div class="container stats">
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Ingredientes frescos</span>
+      </div>
+
+      <div class="stat">
+        <strong>Hecho al momento</strong>
+        <span>Nada de comida aburrida</span>
+      </div>
+
+      <div class="stat">
+        <strong>🔥 Nivel santo</strong>
+        <span>Salsas para todos</span>
+      </div>
+    </div>
+
+    <section class="container content-section" id="menu">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">El menú</span>
+          <h2>¿Qué se te antoja?</h2>
+        </div>
+
+        <p>
+          Desde los clásicos de siempre hasta combinaciones
+          que te van a hacer regresar.
+        </p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-button active" data-filter="todos">Todo</button>
+        <button class="filter-button" data-filter="tacos">Tacos</button>
+        <button class="filter-button" data-filter="especialidades">Especialidades</button>
+        <button class="filter-button" data-filter="bebidas">Bebidas</button>
+      </div>
+
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="tacos">
+          <img
+            src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=700&q=80"
+            alt="Tacos al pastor"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>Pastor Santo</h3>
+            <p>Pastor, piña, cilantro, cebolla y salsa de la casa.</p>
+            <div class="menu-bottom">
+              <span class="price">$25</span>
+              <button class="add-button" data-name="Pastor Santo" data-price="25" aria-label="Agregar Pastor Santo">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="tacos">
+          <img
+            src="https://images.unsplash.com/photo-1613514785940-daed07799d9b?auto=format&fit=crop&w=700&q=80"
+            alt="Tacos de carne"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>El Carnal</h3>
+            <p>Carne asada, guacamole, cebollita y limón.</p>
+            <div class="menu-bottom">
+              <span class="price">$32</span>
+              <button class="add-button" data-name="El Carnal" data-price="32" aria-label="Agregar El Carnal">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="especialidades">
+          <img
+            src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=700&q=80"
+            alt="Taco especial"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>El Pecador</h3>
+            <p>Tortilla dorada, carne, queso fundido y salsa cremosa.</p>
+            <div class="menu-bottom">
+              <span class="price">$55</span>
+              <button class="add-button" data-name="El Pecador" data-price="55" aria-label="Agregar El Pecador">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="tacos">
+          <img
+            src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=700&q=80"
+            alt="Tacos mexicanos"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>Campechano</h3>
+            <p>Mezcla de carnes, cebolla, cilantro y salsa verde.</p>
+            <div class="menu-bottom">
+              <span class="price">$35</span>
+              <button class="add-button" data-name="Campechano" data-price="35" aria-label="Agregar Campechano">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="especialidades">
+          <img
+            src="https://images.unsplash.com/photo-1624300629298-e9de39c13be5?auto=format&fit=crop&w=700&q=80"
+            alt="Quesadilla"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>Quesadilla Santa</h3>
+            <p>Queso derretido, tortilla doradita y salsa.</p>
+            <div class="menu-bottom">
+              <span class="price">$45</span>
+              <button class="add-button" data-name="Quesadilla Santa" data-price="45" aria-label="Agregar Quesadilla Santa">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="bebidas">
+          <img
+            src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80"
+            alt="Bebida fría"
+            loading="lazy"
+          >
+          <div class="menu-info">
+            <h3>Agua Fresca</h3>
+            <p>Agua fresca del día, fría y perfecta para acompañar.</p>
+            <div class="menu-bottom">
+              <span class="price">$25</span>
+              <button class="add-button" data-name="Agua Fresca" data-price="25" aria-label="Agregar Agua Fresca">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="promo">
+        <div class="promo-content">
+          <span class="eyebrow">La recomendación de la casa</span>
+          <h2>EL ANTOJO NO ESPERA.</h2>
+          <p>
+            Junta a tus amigos, elige tus favoritos y arma tu pedido.
+            Aquí siempre hay lugar para otro taco.
+          </p>
+          <a href="#menu" class="button">Armar mi pedido ↗</a>
+        </div>
+
+        <img
+          src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=900&q=85"
+          alt="Comida mexicana"
+          loading="lazy"
+        >
+      </div>
+    </section>
+
+    <section class="container content-section" id="nosotros">
+      <div class="about-grid">
+        <img
+          src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee?auto=format&fit=crop&w=900&q=85"
+          alt="Preparación de comida"
+          loading="lazy"
+        >
+
+        <div>
+          <span class="eyebrow">Nuestra historia</span>
+          <h2>BUENOS TACOS.<br>BUENA VIBRA.</h2>
+
+          <p>
+            En Santo Taco creemos que un buen taco puede mejorar
+            cualquier día. Preparamos cada orden con ingredientes
+            frescos y mucho sabor.
+          </p>
+
+          <p>
+            Un concepto inspirado en la comida mexicana, las reuniones
+            con amigos y esos lugares a los que siempre quieres regresar.
+          </p>
+
+          <a class="button" href="#contacto">Encuéntranos ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container content-section" id="contacto">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Visítanos</span>
+          <h2>Caile por unos tacos.</h2>
+        </div>
+
+        <p>
+          La dirección y el horario son ejemplos. Sustitúyelos
+          por la información real antes de publicar.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="icon">📍</div>
+          <h3>Ubicación</h3>
+          <p>Av. de los Tacos 123, Querétaro, México</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon">🕒</div>
+          <h3>Horario</h3>
+          <p>Lunes a domingo<br>2:00 PM – 11:00 PM</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon">📱</div>
+          <h3>Pedidos</h3>
+          <p>Prepara tu pedido y envíalo por WhatsApp.</p>
+          <a class="button" href="#menu" style="margin-top:15px">Ver menú</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <a class="logo" href="#inicio">SANTO<span>TACO.</span></a>
+      <p>© 2026 Santo Taco. Sitio de demostración.</p>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <!-- CARRITO DE COMPRAS -->
+
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-header">
+      <h3>🛒 Tu pedido</h3>
+      <strong id="cartCount">0 productos</strong>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-total" id="cartTotal">$0 MXN</div>
+
+    <button id="orderButton">Pedir por WhatsApp ↗</button>
+  </div>
+
+  <script>
+    // Número de WhatsApp con código de México.
+    const WHATSAPP_NUMBER = "524426785804";
+
+    let cart = [];
+
+    const cartBar = document.getElementById("cartBar");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartItems = document.getElementById("cartItems");
+    const orderButton = document.getElementById("orderButton");
+
+    // FILTRAR CATEGORÍAS DEL MENÚ
+
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const menuCards = document.querySelectorAll(".menu-card");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(item => {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const category = button.dataset.filter;
+
+        menuCards.forEach(card => {
+          card.style.display =
+            category === "todos" ||
+            card.dataset.category === category
+              ? ""
+              : "none";
+        });
+      });
+    });
+
+    // AGREGAR PRODUCTOS
+
+    document.querySelectorAll(".add-button").forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
+
+        cart.push({
+          id: crypto.randomUUID(),
+          name: name,
+          price: price
+        });
+
+        updateCart();
+
+        button.textContent = "✓";
+
+        setTimeout(() => {
+          button.textContent = "+";
+        }, 400);
+      });
+    });
+
+    // ELIMINAR PRODUCTOS
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
+
+    // ACTUALIZAR CARRITO Y TOTAL
+
+    function updateCart() {
+      const count = cart.length;
+
+      const total = cart.reduce((sum, item) => {
+        return sum + item.price;
+      }, 0);
+
+      cartCount.textContent =
+        count + (count === 1 ? " producto" : " productos");
+
+      cartTotal.textContent = "$" + total + " MXN";
+
+      cartItems.replaceChildren();
+
+      cart.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const info = document.createElement("div");
+        info.className = "cart-item-info";
+
+        const name = document.createElement("strong");
+        name.textContent = item.name;
+
+        const price = document.createElement("small");
+        price.textContent = "$" + item.price + " MXN";
+
+        info.append(name, price);
+
+        const removeButton = document.createElement("button");
+        removeButton.className = "remove-button";
+        removeButton.textContent = "Eliminar";
+        removeButton.type = "button";
+
+        removeButton.addEventListener("click", () => {
+          removeFromCart(item.id);
+        });
+
+        row.append(info, removeButton);
+        cartItems.appendChild(row);
+      });
+
+      cartBar.classList.toggle("visible", count > 0);
+    }
+
+    // PREPARAR EL PEDIDO EN WHATSAPP
+
+    orderButton.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Agrega algo al pedido primero.");
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => {
+        return sum + item.price;
+      }, 0);
+
+      const items = cart.map(item => {
+        return `- ${item.name}: $${item.price} MXN`;
+      }).join("\n");
+
+      const message =
+        "¡Hola! Quiero hacer este pedido en Santo Taco:\n\n" +
+        items +
+        "\n\nTotal: $" + total + " MXN" +
+        "\n\n¿Me confirman mi pedido, por favor?";
+
+      const url =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
+
+      window.open(url, "_blank");
+    });
+  </script>
+
+</body>
+</html>
