@@ -1,812 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171914">
-  <meta name="description" content="SANTO TACO: tacos, bebidas y sabor mexicano. Consulta nuestro menú y prepara tu pedido por WhatsApp.">
-  <title>SANTO TACO | Tacos con actitud</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #171914;
-      --panel: #22251e;
-      --green: #c7f36b;
-      --white: #f8f8f2;
-      --muted: #a6aa9d;
-      --border: #393d32;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: "DM Sans", sans-serif;
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font: inherit; }
-    button { cursor: pointer; }
-    img { display: block; max-width: 100%; }
-
-    .container { width: min(1120px, 90%); margin: auto; }
-
-    .announcement {
-      background: var(--green);
-      color: #171914;
-      text-align: center;
-      padding: 8px 12px;
-      font-size: .8rem;
-      font-weight: 800;
-      letter-spacing: .04em;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(23,25,20,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .logo {
-      font: 800 1.55rem "Outfit", sans-serif;
-      letter-spacing: -.06em;
-    }
-
-    .logo span { color: var(--green); }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-      font-size: .9rem;
-      color: #e2e4dc;
-    }
-
-    .nav-links a:hover { color: var(--green); }
-
-    .btn {
-      border: 0;
-      border-radius: 9px;
-      padding: 12px 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-weight: 800;
-      transition: transform .2s, background .2s;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--green); color: #171914; }
-    .btn-secondary { border: 1px solid #5a5e51; color: white; background: transparent; }
-    .btn-dark { background: #171914; color: white; }
-    .btn-small { padding: 9px 13px; font-size: .85rem; }
-
-    .hero {
-      padding: 75px 0 65px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 48px;
-    }
-
-    .eyebrow {
-      color: var(--green);
-      text-transform: uppercase;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      margin-bottom: 17px;
-    }
-
-    h1, h2, h3 { font-family: "Outfit", sans-serif; line-height: 1.1; }
-
-    h1 {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      letter-spacing: -.065em;
-      margin-bottom: 22px;
-    }
-
-    h1 span { color: var(--green); }
-
-    .hero p { color: var(--muted); max-width: 470px; margin-bottom: 26px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .hero-image {
-      position: relative;
-      min-height: 390px;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      border-radius: 24px;
-    }
-
-    .floating-label {
-      position: absolute;
-      bottom: 20px;
-      left: -18px;
-      background: var(--green);
-      color: #171914;
-      padding: 15px 20px;
-      border-radius: 12px;
-      font-weight: 800;
-      box-shadow: 0 12px 40px #0005;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
-      text-align: center;
-      gap: 12px;
-    }
-
-    .stats strong { display: block; font: 700 1.3rem "Outfit"; }
-    .stats span { font-size: .8rem; color: var(--muted); }
-
-    section { padding: 78px 0; }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      letter-spacing: -.045em;
-    }
-
-    .section-heading p, .muted { color: var(--muted); }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .filter {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: white;
-      padding: 9px 16px;
-      border-radius: 99px;
-    }
-
-    .filter.active, .filter:hover {
-      background: var(--green);
-      border-color: var(--green);
-      color: #171914;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .product {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform .2s, border-color .2s;
-    }
-
-    .product:hover { transform: translateY(-4px); border-color: #7d9453; }
-
-    .product img {
-      height: 210px;
-      width: 100%;
-      object-fit: cover;
-      background: #303329;
-    }
-
-    .product-content { padding: 18px; }
-    .product h3 { font-size: 1.25rem; margin-bottom: 8px; }
-    .product p { font-size: .88rem; color: var(--muted); min-height: 44px; }
-
-    .product-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .price { color: var(--green); font-size: 1.2rem; font-weight: 800; }
-
-    .promo {
-      background: var(--green);
-      color: #171914;
-      border-radius: 22px;
-      padding: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .promo h2 { margin-bottom: 12px; }
-    .promo p { max-width: 540px; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 42px;
-    }
-
-    .about-grid img {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
-      border-radius: 20px;
-    }
-
-    .about-grid p { color: var(--muted); margin: 18px 0; }
-
-    .feature-list { list-style: none; display: grid; gap: 12px; }
-    .feature-list li::before { content: "✓"; color: var(--green); font-weight: 800; margin-right: 10px; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .info-card {
-      padding: 26px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-    }
-
-    .info-card h3 { margin-bottom: 18px; font-size: 1.35rem; }
-    .info-line { margin: 13px 0; color: var(--muted); }
-    .info-line strong { color: white; display: block; }
-
-    .qr-wrap {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    #qr-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 10px;
-      background: white;
-      padding: 7px;
-    }
-
-    .notice {
-      font-size: .8rem;
-      color: var(--muted);
-      margin-top: 15px;
-    }
-
-    footer {
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .85rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .cart-fab {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 30;
-      box-shadow: 0 6px 28px #0008;
-    }
-
-    dialog {
-      background: var(--bg);
-      color: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      width: min(500px, 92%);
-      max-height: 85vh;
-      margin: auto;
-      padding: 24px;
-    }
-
-    dialog::backdrop { background: #000b; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .cart-item { display: flex; justify-content: space-between; gap: 15px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .cart-item small { display: block; color: var(--muted); }
-    .cart-controls { display: flex; align-items: center; gap: 9px; margin-top: 8px; }
-    .cart-controls button { background: var(--panel); color: white; border: 1px solid var(--border); border-radius: 6px; padding: 2px 9px; }
-    .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin: 22px 0; }
-    .cart-actions { display: grid; gap: 10px; }
-    .empty { color: var(--muted); padding: 20px 0; }
-
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; }
-      .hero-image { min-height: 0; }
-      .hero-image img { height: 320px; }
-      .floating-label { left: 10px; }
-      .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-      .product img { height: 145px; }
-      .product-content { padding: 12px; }
-      .product h3 { font-size: 1.05rem; }
-      .product p { font-size: .8rem; }
-      .product-bottom { align-items: start; flex-direction: column; }
-      .product-bottom .btn { width: 100%; }
-      .promo { padding: 28px; flex-direction: column; align-items: start; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .about-grid img { height: 270px; }
-      section { padding: 55px 0; }
-      .section-heading { align-items: start; flex-direction: column; }
-    }
-
-    @media (max-width: 380px) {
-      .menu-grid { grid-template-columns: 1fr; }
-      .product img { height: 210px; }
-      .stats strong { font-size: 1.05rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SANTO TACO | El sabor mexicano</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#171411;color:#fff}
+header{background:#211b16;padding:20px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:25px;font-weight:900;color:#ff923d}
+nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px}
+.hero{min-height:480px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;background:linear-gradient(#0009,#000b),url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=1400') center/cover}
+.hero h1{font-size:clamp(42px,8vw,76px);color:#ff963f}
+.hero p{font-size:18px;margin:18px 0 28px}
+.btn{background:#ff8b35;color:#171411;padding:14px 25px;border:0;border-radius:6px;font-weight:bold;text-decoration:none;cursor:pointer}
+section{padding:65px 7%}
+h2{text-align:center;font-size:34px;color:#ff963f;margin-bottom:12px}
+.subtitle{text-align:center;color:#aaa;margin-bottom:35px}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{background:#29221c;border-radius:12px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-5px)}
+.card img{width:100%;height:185px;object-fit:cover}
+.info{padding:18px}
+.info h3{margin-bottom:9px}
+.info p{color:#bbb;font-size:14px;min-height:35px}
+.price{color:#ff963f;font-size:21px;font-weight:bold;margin-top:12px}
+.add{width:100%;padding:12px;background:#ff8b35;border:0;border-radius:6px;margin-top:14px;font-weight:bold;cursor:pointer}
+.add:hover,.btn:hover{background:#ffac65}
+#pedido{background:#241e18;border-radius:12px;max-width:700px;margin:auto;padding:25px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #444}
+.item button{background:#63372a;color:white;border:0;padding:6px 10px;border-radius:5px;cursor:pointer}
+.total{text-align:right;font-size:23px;color:#ff963f;margin:22px 0}
+footer{text-align:center;background:#211b16;padding:35px;color:#aaa}
+footer strong{color:#ff963f}
+@media(max-width:600px){
+header{padding:16px 5%}
+.logo{font-size:20px}
+nav a{margin-left:10px;font-size:12px}
+section{padding:45px 5%}
+.hero{min-height:400px}
+}
+</style>
 </head>
-
 <body>
-  <div class="announcement">
-    🌮 DEMO DE RESTAURANTE · HECHA PARA MOSTRAR DISEÑO WEB
-  </div>
 
-  <header>
-    <nav class="container">
-      <a class="logo" href="#inicio">SANTO<span>TACO.</span></a>
-      <div class="nav-links">
-        <a href="#menu">Menú</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <button class="btn btn-primary btn-small" onclick="openCart()">
-        Mi pedido (<span id="cart-count">0</span>)
-      </button>
-    </nav>
-  </header>
+<header>
+<div class="logo">🌮 SANTO TACO</div>
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#menu">Menú</a>
+<a href="#pedido">Mi pedido</a>
+</nav>
+</header>
 
-  <main>
-    <div class="container hero" id="inicio">
-      <div>
-        <div class="eyebrow">ANTOJO ACTIVADO · SABOR MEXICANO</div>
-        <h1>El taco perfecto <span>sí existe.</span></h1>
-        <p>
-          Tortillas, buenos ingredientes y mucho sabor.
-          Explora nuestro menú de demostración y arma tu pedido en unos clics.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#menu">Ver menú ↘</a>
-          <button class="btn btn-secondary" onclick="openCart()">Armar pedido</button>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img
-          src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1000&q=85"
-          alt="Tacos preparados y servidos"
-        >
-        <div class="floating-label">🔥 Hechos para el antojo</div>
-      </div>
-    </div>
+<div class="hero" id="inicio">
+<h1>EL SABOR QUE NOS UNE</h1>
+<p>Tacos deliciosos, ingredientes frescos y mucho sabor.</p>
+<a href="#menu" class="btn">DESCUBRE NUESTRO MENÚ</a>
+</div>
 
-    <div class="container stats">
-      <div><strong>100% sabor</strong><span>Concepto de marca</span></div>
-      <div><strong>Menú digital</strong><span>Fácil de consultar</span></div>
-      <div><strong>Pedido simple</strong><span>Directo a WhatsApp</span></div>
-    </div>
+<section id="menu">
+<h2>NUESTRO MENÚ</h2>
+<p class="subtitle">Preparamos cada taco con mucho sabor.</p>
+<div class="menu" id="productos"></div>
+</section>
 
-    <section id="menu">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">LO BUENO ESTÁ AQUÍ</div>
-            <h2>Nuestro menú</h2>
-          </div>
-          <p>Precios de ejemplo en pesos mexicanos.</p>
-        </div>
+<section>
+<div id="pedido">
+<h2>MI PEDIDO</h2>
+<p class="subtitle">Agrega tus favoritos y revisa tu pedido.</p>
+<div id="lista">Todavía no agregas productos.</div>
+<div class="total" id="total">Total: $0 MXN</div>
+<button class="btn" style="width:100%" onclick="enviar()">CONTINUAR PEDIDO</button>
+</div>
+</section>
 
-        <div class="filters" aria-label="Filtrar productos">
-          <button class="filter active" data-filter="Todos">Todo</button>
-          <button class="filter" data-filter="Tacos">Tacos</button>
-          <button class="filter" data-filter="Especialidades">Especialidades</button>
-          <button class="filter" data-filter="Bebidas">Bebidas</button>
-        </div>
+<footer>
+<strong>SANTO TACO</strong>
+<p style="margin-top:12px">El auténtico sabor mexicano.</p>
+<p style="margin-top:10px;font-size:12px">Sitio de demostración creado por NEXO Digital Studio.</p>
+</footer>
 
-        <div class="menu-grid" id="menu-grid"></div>
-      </div>
-    </section>
+<script>
+const productos=[
+{nombre:"Tacos al pastor",precio:22,desc:"Pastor, piña, cebolla y cilantro.",img:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"},
+{nombre:"Tacos de bistec",precio:25,desc:"Carne asada con salsa de la casa.",img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"},
+{nombre:"Quesadillas",precio:35,desc:"Tortilla doradita y queso fundido.",img:"https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"},
+{nombre:"Gringas",precio:45,desc:"Tortilla de harina, pastor y queso.",img:"https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600"},
+{nombre:"Nachos",precio:55,desc:"Totopos, queso y acompañamientos.",img:"https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600"},
+{nombre:"Agua fresca",precio:25,desc:"Bebida fresca del día.",img:"https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"}
+];
 
-    <section class="container">
-      <div class="promo">
-        <div>
-          <div class="eyebrow" style="color:#303a20">TU PRÓXIMO ANTOJO</div>
-          <h2>¿Ya sabes qué vas a pedir?</h2>
-          <p>Agrega tus favoritos al carrito y revisa tu pedido antes de enviarlo.</p>
-        </div>
-        <button class="btn btn-dark" onclick="openCart()">Ver mi pedido →</button>
-      </div>
-    </section>
+let pedido=[];
 
-    <section id="nosotros">
-      <div class="container about-grid">
-        <img
-          src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1000&q=85"
-          alt="Comida mexicana preparada para compartir"
-          loading="lazy"
-        >
-        <div>
-          <div class="eyebrow">MÁS QUE TACOS</div>
-          <h2>Sabor que reúne.</h2>
-          <p>
-            SANTO TACO es una marca ficticia creada como demostración
-            de una página web para restaurantes. Su concepto combina
-            comida mexicana, una imagen moderna y una experiencia sencilla.
-          </p>
-          <ul class="feature-list">
-            <li>Menú fácil de explorar</li>
-            <li>Pedido organizado en el carrito</li>
-            <li>Diseño adaptable a celular</li>
-            <li>Contacto directo por WhatsApp</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+function mostrar(){
+document.getElementById("productos").innerHTML=productos.map((p,i)=>`
+<div class="card">
+<img src="${p.img}" alt="${p.nombre}" loading="lazy">
+<div class="info">
+<h3>${p.nombre}</h3>
+<p>${p.desc}</p>
+<div class="price">$${p.precio} MXN</div>
+<button class="add" onclick="agregar(${i})">AGREGAR +</button>
+</div>
+</div>`).join("");
+}
 
-    <section id="contacto">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">ENCUÉNTRANOS</div>
-            <h2>Contacto y código QR</h2>
-          </div>
-        </div>
+function agregar(i){
+pedido.push(productos[i]);
+actualizar();
+}
 
-        <div class="contact-grid">
-          <div class="info-card">
-            <h3>Información de ejemplo</h3>
-            <div class="info-line">
-              <strong>📍 Ubicación</strong>
-              Querétaro, México · Dirección ficticia
-            </div>
-            <div class="info-line">
-              <strong>🕒 Horarios</strong>
-              Lunes a domingo · Horario de ejemplo
-            </div>
-            <div class="info-line">
-              <strong>📱 Pedidos</strong>
-              WhatsApp configurado por el propietario de la página
-            </div>
-            <p class="notice">
-              Esta información es ilustrativa. No representa un local real.
-            </p>
-          </div>
+function quitar(i){
+pedido.splice(i,1);
+actualizar();
+}
 
-          <div class="info-card">
-            <h3>Escanea para visitar</h3>
-            <div class="qr-wrap">
-              <img id="qr-image" alt="Código QR para abrir esta página">
-              <div>
-                <p class="muted" style="margin-bottom:14px">
-                  Este código se genera con la dirección actual de la página.
-                </p>
-                <button class="btn btn-primary btn-small" onclick="downloadQR()">
-                  Descargar QR
-                </button>
-              </div>
-            </div>
-            <p class="notice">
-              Para probarlo, publica la página y escanea el código con otro celular.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+function actualizar(){
+const lista=document.getElementById("lista");
+if(pedido.length===0){
+lista.textContent="Todavía no agregas productos.";
+}else{
+lista.innerHTML=pedido.map((p,i)=>`
+<div class="item">
+<span>${p.nombre} - $${p.precio}</span>
+<button onclick="quitar(${i})">Quitar</button>
+</div>`).join("");
+}
+const total=pedido.reduce((s,p)=>s+p.precio,0);
+document.getElementById("total").textContent="Total: $"+total+" MXN";
+}
 
-    <section style="padding-top:0">
-      <div class="container info-card">
-        <div class="eyebrow">¿TIENES UN RESTAURANTE?</div>
-        <h2>Tu negocio también merece una buena página web.</h2>
-        <p class="muted" style="margin:15px 0 22px;max-width:650px">
-          Esta página es una muestra de mi servicio de diseño web.
-          Puedo crear una propuesta personalizada para tu menú,
-          ubicación y contacto.
-        </p>
-        <a class="btn btn-primary" id="developer-contact" href="#contacto">
-          Solicitar información →
-        </a>
-        <p class="notice">
-          Configura tu propio WhatsApp antes de ofrecer este enlace a clientes.
-        </p>
-      </div>
-    </section>
-  </main>
+function enviar(){
+if(pedido.length===0){
+alert("Primero agrega algún producto.");
+return;
+}
+alert("¡Gracias! Esta es una demostración. Para recibir pedidos reales debemos configurar el WhatsApp del restaurante.");
+}
 
-  <footer>
-    <div class="container footer-inner">
-      <a class="logo" href="#inicio">SANTO<span>TACO.</span></a>
-      <p>Proyecto de demostración web · <span id="year"></span></p>
-    </div>
-  </footer>
-
-  <button class="btn btn-primary cart-fab" onclick="openCart()">
-    🛒 Mi pedido (<span id="fab-count">0</span>)
-  </button>
-
-  <dialog id="cart-dialog">
-    <div class="cart-header">
-      <h2 style="font-size:1.7rem">Tu pedido</h2>
-      <button class="btn btn-secondary btn-small" onclick="closeCart()">Cerrar ✕</button>
-    </div>
-    <div id="cart-items"></div>
-    <div class="cart-total">
-      <span>Total</span><span id="cart-total">$0.00</span>
-    </div>
-    <div class="cart-actions">
-      <button class="btn btn-primary" onclick="sendOrder()">Pedir por WhatsApp ↗</button>
-      <button class="btn btn-secondary" onclick="clearCart()">Vaciar carrito</button>
-    </div>
-    <p class="notice">El pedido se prepara en WhatsApp. Debes enviarlo manualmente.</p>
-  </dialog>
-
-  <script>
-    // CONFIGURACIÓN: cambia estos valores por los datos correctos.
-    const CONFIG = {
-      // Escribe el número con código de país, solo dígitos.
-      // Ejemplo de formato mexicano: 52 + número de 10 dígitos.
-      whatsapp: "5210000000000",
-
-      // Escribe aquí TU número de WhatsApp para recibir consultas de clientes.
-      developerWhatsapp: "5210000000000"
-    };
-
-    // PRODUCTOS DE EJEMPLO. Cambia nombres, fotos, descripciones y precios.
-    const products = [
-      {
-        id: 1, name: "Taco al pastor", price: 25, category: "Tacos",
-        description: "Pastor, cebolla, cilantro y salsa.",
-        image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 2, name: "Taco de bistec", price: 30, category: "Tacos",
-        description: "Bistec a la plancha y guarniciones.",
-        image: "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 3, name: "Taco de suadero", price: 28, category: "Tacos",
-        description: "Suadero suave con cilantro y cebolla.",
-        image: "https://images.unsplash.com/photo-1613514785940-daed07799d9b?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 4, name: "Gringa especial", price: 65, category: "Especialidades",
-        description: "Tortilla de harina, queso y carne al pastor.",
-        image: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 5, name: "Quesadilla", price: 40, category: "Especialidades",
-        description: "Queso derretido en tortilla doradita.",
-        image: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 6, name: "Agua fresca", price: 25, category: "Bebidas",
-        description: "Bebida fresca. Sabores sujetos a disponibilidad.",
-        image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80"
-      }
-    ];
-
-    const cart = {};
-    let currentFilter = "Todos";
-
-    const money = value => value.toLocaleString("es-MX", {
-      style: "currency", currency: "MXN"
-    });
-
-    function renderMenu() {
-      const grid = document.getElementById("menu-grid");
-      const shown = currentFilter === "Todos"
-        ? products
-        : products.filter(p => p.category === currentFilter);
-
-      grid.innerHTML = shown.map(p => `
-        <article class="product">
-          <img src="${p.image}" alt="${p.name}" loading="lazy">
-          <div class="product-content">
-            <h3>${p.name}</h3>
-            <p>${p.description}</p>
-            <div class="product-bottom">
-              <span class="price">${money(p.price)}</span>
-              <button class="btn btn-primary btn-small"
-                onclick="addToCart(${p.id})">+ Agregar</button>
-            </div>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    document.querySelectorAll(".filter").forEach(button => {
-      button.addEventListener("click", () => {
-        currentFilter = button.dataset.filter;
-        document.querySelectorAll(".filter").forEach(b =>
-          b.classList.toggle("active", b === button)
-        );
-        renderMenu();
-      });
-    });
-
-    function addToCart(id) {
-      cart[id] = (cart[id] || 0) + 1;
-      updateCart();
-    }
-
-    function changeQuantity(id, change) {
-      cart[id] = (cart[id] || 0) + change;
-      if (cart[id] <= 0) delete cart[id];
-      updateCart();
-    }
-
-    function removeItem(id) {
-      delete cart[id];
-      updateCart();
-    }
-
-    function clearCart() {
-      Object.keys(cart).forEach(id => delete cart[id]);
-      updateCart();
-    }
-
-    function getCount() {
-      return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
-    }
-
-    function getTotal() {
-      return products.reduce((sum, p) => sum + p.price * (cart[p.id] || 0), 0);
-    }
-
-    function updateCart() {
-      const count = getCount();
-      document.getElementById("cart-count").textContent = count;
-      document.getElementById("fab-count").textContent = count;
-      document.getElementById("cart-total").textContent = money(getTotal());
-
-      const items = document.getElementById("cart-items");
-      const chosen = products.filter(p => cart[p.id]);
-
-      if (!chosen.length) {
-        items.innerHTML = '<p class="empty">Tu carrito está vacío. ¡Agrega algo rico!</p>';
-        return;
-      }
-
-      items.innerHTML = chosen.map(p => `
-        <div class="cart-item">
-          <div>
-            <strong>${p.name}</strong>
-            <small>${money(p.price)} por unidad</small>
-            <div class="cart-controls">
-              <button aria-label="Quitar una unidad" onclick="changeQuantity(${p.id},-1)">−</button>
-              <span>${cart[p.id]}</span>
-              <button aria-label="Agregar una unidad" onclick="changeQuantity(${p.id},1)">+</button>
-              <button onclick="removeItem(${p.id})">Eliminar</button>
-            </div>
-          </div>
-          <strong>${money(p.price * cart[p.id])}</strong>
-        </div>
-      `).join("");
-    }
-
-    function openCart() {
-      document.getElementById("cart-dialog").showModal();
-    }
-
-    function closeCart() {
-      document.getElementById("cart-dialog").close();
-    }
-
-    function sendOrder() {
-      if (getCount() === 0) {
-        alert("Primero agrega algún producto al carrito.");
-        return;
-      }
-
-      if (!/^\d{10,15}$/.test(CONFIG.whatsapp) ||
-          CONFIG.whatsapp === "5210000000000") {
-        alert("Primero configura el número de WhatsApp del restaurante en el código.");
-        return;
-      }
-
-      const lines = products
-        .filter(p => cart[p.id])
-        .map(p => `${cart[p.id]} x ${p.name} — ${money(p.price * cart[p.id])}`);
-
-      const message =
-        "¡Hola! Quiero hacer este pedido de SANTO TACO:\n\n" +
-        lines.join("\n") +
-        "\n\nTotal estimado: " + money(getTotal()) +
-        "\n\n¿Me confirman disponibilidad, por favor?";
-
-      const url = "https://wa.me/" + CONFIG.whatsapp +
-        "?text=" + encodeURIComponent(message);
-
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-
-    function setupQR() {
-      const pageUrl = window.location.href;
-      const qr = document.getElementById("qr-image");
-      qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-        encodeURIComponent(pageUrl);
-    }
-
-    function downloadQR() {
-      const pageUrl = window.location.href;
-      if (pageUrl.startsWith("file:") || pageUrl.includes("localhost")) {
-        alert("Primero publica la página en internet. Después podrás descargar el QR correcto.");
-        return;
-      }
-
-      const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=" +
-        encodeURIComponent(pageUrl);
-      window.open(qrUrl, "_blank", "noopener,noreferrer");
-    }
-
-    document.getElementById("developer-contact").addEventListener("click", event => {
-      if (!/^\d{10,15}$/.test(CONFIG.developerWhatsapp) ||
-          CONFIG.developerWhatsapp === "5210000000000") {
-        event.preventDefault();
-        alert("Para recibir consultas, configura tu WhatsApp en developerWhatsapp dentro del código.");
-        return;
-      }
-      event.preventDefault();
-      const message = "¡Hola! Vi tu demostración de SANTO TACO y quiero información sobre una página web para mi negocio.";
-      window.open(
-        "https://wa.me/" + CONFIG.developerWhatsapp + "?text=" + encodeURIComponent(message),
-        "_blank", "noopener,noreferrer"
-      );
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    renderMenu();
-    updateCart();
-    setupQR();
-  </script>
+mostrar();
+</script>
 </body>
 </html>
