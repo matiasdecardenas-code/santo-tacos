@@ -3,144 +3,365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANTO TACO | El sabor mexicano</title>
+<title>SANTO TACO | Taquería</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#171411;color:#fff}
-header{background:#211b16;padding:20px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{font-size:25px;font-weight:900;color:#ff923d}
-nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px}
-.hero{min-height:480px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;background:linear-gradient(#0009,#000b),url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=1400') center/cover}
-.hero h1{font-size:clamp(42px,8vw,76px);color:#ff963f}
-.hero p{font-size:18px;margin:18px 0 28px}
-.btn{background:#ff8b35;color:#171411;padding:14px 25px;border:0;border-radius:6px;font-weight:bold;text-decoration:none;cursor:pointer}
-section{padding:65px 7%}
-h2{text-align:center;font-size:34px;color:#ff963f;margin-bottom:12px}
-.subtitle{text-align:center;color:#aaa;margin-bottom:35px}
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
-.card{background:#29221c;border-radius:12px;overflow:hidden;transition:.2s}
-.card:hover{transform:translateY(-5px)}
-.card img{width:100%;height:185px;object-fit:cover}
-.info{padding:18px}
-.info h3{margin-bottom:9px}
-.info p{color:#bbb;font-size:14px;min-height:35px}
-.price{color:#ff963f;font-size:21px;font-weight:bold;margin-top:12px}
-.add{width:100%;padding:12px;background:#ff8b35;border:0;border-radius:6px;margin-top:14px;font-weight:bold;cursor:pointer}
-.add:hover,.btn:hover{background:#ffac65}
-#pedido{background:#241e18;border-radius:12px;max-width:700px;margin:auto;padding:25px}
-.item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #444}
-.item button{background:#63372a;color:white;border:0;padding:6px 10px;border-radius:5px;cursor:pointer}
-.total{text-align:right;font-size:23px;color:#ff963f;margin:22px 0}
-footer{text-align:center;background:#211b16;padding:35px;color:#aaa}
-footer strong{color:#ff963f}
-@media(max-width:600px){
-header{padding:16px 5%}
-.logo{font-size:20px}
-nav a{margin-left:10px;font-size:12px}
-section{padding:45px 5%}
-.hero{min-height:400px}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #151515;
+  color: white;
+}
+
+header {
+  background: #101010;
+  padding: 22px;
+  text-align: center;
+  border-bottom: 2px solid #ff762b;
+}
+
+header h1 {
+  color: #ff762b;
+  font-size: 34px;
+}
+
+header p {
+  color: #ccc;
+  margin-top: 6px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px;
+  background: linear-gradient(135deg, #292018, #111);
+}
+
+.hero h2 {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.hero span {
+  color: #ff762b;
+}
+
+.hero p {
+  color: #ccc;
+  font-size: 17px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+h2.section-title {
+  color: #ff762b;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: #242424;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.product .emoji {
+  font-size: 55px;
+  margin-bottom: 12px;
+}
+
+.product h3 {
+  margin-bottom: 8px;
+}
+
+.product p {
+  color: #aaa;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.price {
+  color: #ff762b;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+button {
+  background: #ff762b;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #e65e15;
+}
+
+.cart {
+  background: #242424;
+  padding: 22px;
+  border-radius: 12px;
+  margin-top: 45px;
+}
+
+.cart h2 {
+  color: #ff762b;
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #444;
+  padding: 14px 0;
+}
+
+.item button {
+  padding: 6px 11px;
+  margin: 0 3px;
+}
+
+.total {
+  text-align: right;
+  font-size: 22px;
+  color: #ff762b;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.order-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 16px;
+}
+
+footer {
+  background: #101010;
+  text-align: center;
+  padding: 25px;
+  margin-top: 45px;
+  color: #aaa;
+}
+
+@media(max-width: 500px) {
+  .hero h2 {
+    font-size: 29px;
+  }
+
+  .item {
+    flex-wrap: wrap;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">🌮 SANTO TACO</div>
-<nav>
-<a href="#inicio">Inicio</a>
-<a href="#menu">Menú</a>
-<a href="#pedido">Mi pedido</a>
-</nav>
+  <h1>SANTO TACO 🌮</h1>
+  <p>El verdadero sabor mexicano</p>
 </header>
 
-<div class="hero" id="inicio">
-<h1>EL SABOR QUE NOS UNE</h1>
-<p>Tacos deliciosos, ingredientes frescos y mucho sabor.</p>
-<a href="#menu" class="btn">DESCUBRE NUESTRO MENÚ</a>
-</div>
-
-<section id="menu">
-<h2>NUESTRO MENÚ</h2>
-<p class="subtitle">Preparamos cada taco con mucho sabor.</p>
-<div class="menu" id="productos"></div>
+<section class="hero">
+  <h2>¡Bienvenido a <span>SANTO TACO!</span></h2>
+  <p>Buenos tacos, buenos momentos.</p>
 </section>
 
-<section>
-<div id="pedido">
-<h2>MI PEDIDO</h2>
-<p class="subtitle">Agrega tus favoritos y revisa tu pedido.</p>
-<div id="lista">Todavía no agregas productos.</div>
-<div class="total" id="total">Total: $0 MXN</div>
-<button class="btn" style="width:100%" onclick="enviar()">CONTINUAR PEDIDO</button>
-</div>
-</section>
+<main class="container">
+
+  <h2 class="section-title">NUESTRO MENÚ</h2>
+
+  <div class="menu" id="menu"></div>
+
+  <section class="cart">
+    <h2>🛒 Tu pedido</h2>
+
+    <div id="lista">
+      Todavía no agregas productos.
+    </div>
+
+    <div class="total" id="total">
+      Total: $0 MXN
+    </div>
+
+    <button class="order-button" onclick="enviar()">
+      Finalizar pedido
+    </button>
+  </section>
+
+</main>
 
 <footer>
-<strong>SANTO TACO</strong>
-<p style="margin-top:12px">El auténtico sabor mexicano.</p>
-<p style="margin-top:10px;font-size:12px">Sitio de demostración creado por NEXO Digital Studio.</p>
+  <p>© 2026 SANTO TACO | Página de demostración</p>
 </footer>
 
 <script>
-const productos=[
-{nombre:"Tacos al pastor",precio:22,desc:"Pastor, piña, cebolla y cilantro.",img:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"},
-{nombre:"Tacos de bistec",precio:25,desc:"Carne asada con salsa de la casa.",img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"},
-{nombre:"Quesadillas",precio:35,desc:"Tortilla doradita y queso fundido.",img:"https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"},
-{nombre:"Gringas",precio:45,desc:"Tortilla de harina, pastor y queso.",img:"https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600"},
-{nombre:"Nachos",precio:55,desc:"Totopos, queso y acompañamientos.",img:"https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600"},
-{nombre:"Agua fresca",precio:25,desc:"Bebida fresca del día.",img:"https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"}
+
+const productos = [
+  {
+    nombre: "Tacos al pastor",
+    descripcion: "Con piña, cebolla y cilantro.",
+    precio: 18,
+    emoji: "🌮"
+  },
+  {
+    nombre: "Tacos de bistec",
+    descripcion: "Carne de res recién preparada.",
+    precio: 22,
+    emoji: "🌮"
+  },
+  {
+    nombre: "Quesadillas",
+    descripcion: "Con queso derretido.",
+    precio: 35,
+    emoji: "🧀"
+  },
+  {
+    nombre: "Gringa",
+    descripcion: "Tortilla de harina, queso y pastor.",
+    precio: 55,
+    emoji: "🌯"
+  },
+  {
+    nombre: "Torta de pastor",
+    descripcion: "Con aguacate y verduras.",
+    precio: 65,
+    emoji: "🥪"
+  },
+  {
+    nombre: "Refresco",
+    descripcion: "Bebida fría de 600 ml.",
+    precio: 25,
+    emoji: "🥤"
+  }
 ];
 
-let pedido=[];
+let pedido = [];
 
-function mostrar(){
-document.getElementById("productos").innerHTML=productos.map((p,i)=>`
-<div class="card">
-<img src="${p.img}" alt="${p.nombre}" loading="lazy">
-<div class="info">
-<h3>${p.nombre}</h3>
-<p>${p.desc}</p>
-<div class="price">$${p.precio} MXN</div>
-<button class="add" onclick="agregar(${i})">AGREGAR +</button>
-</div>
-</div>`).join("");
-}
+function mostrar() {
+  const menu = document.getElementById("menu");
 
-function agregar(i){
-pedido.push(productos[i]);
-actualizar();
+  menu.innerHTML = productos.map((p, i) => `
+    <div class="product">
+      <div class="emoji">${p.emoji}</div>
+      <h3>${p.nombre}</h3>
+      <p>${p.descripcion}</p>
+      <div class="price">$${p.precio} MXN</div>
+      <button onclick="agregar(${i})">
+        Agregar al pedido
+      </button>
+    </div>
+  `).join("");
 }
 
-function quitar(i){
-pedido.splice(i,1);
-actualizar();
+function agregar(i) {
+  let producto = pedido.find(
+    p => p.nombre === productos[i].nombre
+  );
+
+  if (producto) {
+    producto.cantidad++;
+  } else {
+    pedido.push({
+      ...productos[i],
+      cantidad: 1
+    });
+  }
+
+  actualizar();
 }
 
-function actualizar(){
-const lista=document.getElementById("lista");
-if(pedido.length===0){
-lista.textContent="Todavía no agregas productos.";
-}else{
-lista.innerHTML=pedido.map((p,i)=>`
-<div class="item">
-<span>${p.nombre} - $${p.precio}</span>
-<button onclick="quitar(${i})">Quitar</button>
-</div>`).join("");
-}
-const total=pedido.reduce((s,p)=>s+p.precio,0);
-document.getElementById("total").textContent="Total: $"+total+" MXN";
+function cambiarCantidad(i, cambio) {
+  pedido[i].cantidad += cambio;
+
+  if (pedido[i].cantidad <= 0) {
+    pedido.splice(i, 1);
+  }
+
+  actualizar();
 }
 
-function enviar(){
-if(pedido.length===0){
-alert("Primero agrega algún producto.");
-return;
+function actualizar() {
+  const lista = document.getElementById("lista");
+
+  if (pedido.length === 0) {
+    lista.textContent = "Todavía no agregas productos.";
+  } else {
+    lista.innerHTML = pedido.map((p, i) => `
+      <div class="item">
+        <div>
+          <strong>${p.nombre}</strong><br>
+          $${p.precio} x ${p.cantidad}
+        </div>
+
+        <div>
+          <button onclick="cambiarCantidad(${i}, -1)">−</button>
+          <strong>${p.cantidad}</strong>
+          <button onclick="cambiarCantidad(${i}, 1)">+</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  let total = pedido.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  document.getElementById("total").textContent =
+    "Total: $" + total + " MXN";
 }
-alert("¡Gracias! Esta es una demostración. Para recibir pedidos reales debemos configurar el WhatsApp del restaurante.");
+
+function enviar() {
+  if (pedido.length === 0) {
+    alert("Primero agrega algo a tu pedido.");
+    return;
+  }
+
+  let mensaje = "¡Hola! Este es mi pedido:\n\n";
+
+  pedido.forEach(p => {
+    mensaje += p.nombre + " x" + p.cantidad +
+      " - $" + (p.precio * p.cantidad) + "\n";
+  });
+
+  let total = pedido.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  mensaje += "\nTotal: $" + total + " MXN";
+
+  alert(mensaje + "\n\nEsta es una demostración.");
 }
 
 mostrar();
+actualizar();
+
 </script>
+
 </body>
 </html>
