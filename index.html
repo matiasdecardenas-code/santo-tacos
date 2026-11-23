@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANTO TACO | El verdadero sabor mexicano</title>
+<title>SANTO TACO | Taquería</title>
 
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -20,29 +24,30 @@ body {
 
 header {
   background: #101010;
-  padding: 22px;
+  padding: 22px 15px;
   text-align: center;
-  border-bottom: 3px solid #ff762b;
+  border-bottom: 2px solid #ff762b;
 }
 
 header h1 {
   color: #ff762b;
-  font-size: 36px;
+  font-size: 34px;
+  letter-spacing: 2px;
 }
 
 header p {
-  color: #ccc;
-  margin-top: 8px;
+  color: #bbb;
+  margin-top: 7px;
 }
 
 .hero {
   text-align: center;
-  padding: 75px 20px;
-  background: linear-gradient(135deg, #302117, #111);
+  padding: 85px 20px;
+  background: linear-gradient(135deg, #392316, #111);
 }
 
 .hero h2 {
-  font-size: 42px;
+  font-size: 43px;
   margin-bottom: 15px;
 }
 
@@ -51,13 +56,28 @@ header p {
 }
 
 .hero p {
-  color: #ccc;
-  font-size: 18px;
+  color: #ddd;
+  font-size: 17px;
+}
+
+button {
+  background: #ff762b;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #e65e15;
 }
 
 .hero button {
   margin-top: 25px;
-  padding: 13px 25px;
+  padding: 14px 25px;
 }
 
 .container {
@@ -67,10 +87,28 @@ header p {
 }
 
 .section-title {
-  color: #ff762b;
   text-align: center;
+  color: #ff762b;
   font-size: 30px;
-  margin-bottom: 35px;
+  margin-bottom: 28px;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.categories button {
+  background: #292929;
+  border: 1px solid #444;
+}
+
+.categories button.active {
+  background: #ff762b;
+  border-color: #ff762b;
 }
 
 .menu {
@@ -101,8 +139,18 @@ header p {
   background: #383838;
 }
 
+.photo-fallback {
+  display: none;
+  height: 190px;
+  background: #30241d;
+  color: #ff762b;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
 .product h3 {
-  margin: 18px 10px 8px;
+  margin: 17px 10px 8px;
   font-size: 20px;
 }
 
@@ -120,23 +168,13 @@ header p {
   margin: 15px 0;
 }
 
-button {
-  background: #ff762b;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  padding: 11px 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #e65e15;
+.product button {
+  width: 85%;
 }
 
 .cart {
   background: #242424;
-  padding: 28px;
+  padding: 27px;
   border-radius: 14px;
   margin-top: 55px;
 }
@@ -148,7 +186,7 @@ button:hover {
 }
 
 .empty {
-  color: #ccc;
+  color: #bbb;
   padding: 12px 0;
 }
 
@@ -183,11 +221,23 @@ button:hover {
   margin-top: 25px;
 }
 
-.order-button {
-  width: 100%;
-  padding: 16px;
+.cart-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin-top: 25px;
-  font-size: 17px;
+}
+
+.cart-actions button {
+  padding: 15px 10px;
+}
+
+.clear-button {
+  background: #444;
+}
+
+.clear-button:hover {
+  background: #555;
 }
 
 footer {
@@ -208,8 +258,12 @@ footer {
     flex-direction: column;
   }
 
+  .cart-actions {
+    grid-template-columns: 1fr;
+  }
+
   .total {
-    font-size: 21px;
+    font-size: 22px;
   }
 }
 </style>
@@ -225,84 +279,23 @@ footer {
 <section class="hero">
   <h2>¡Bienvenido a <span>SANTO TACO!</span></h2>
   <p>Buenos tacos, buenos momentos.</p>
-  <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+  <button onclick="document.getElementById('menu-section').scrollIntoView()">
     VER MENÚ
   </button>
 </section>
 
-<main class="container">
+<main class="container" id="menu-section">
 
   <h2 class="section-title">NUESTRO MENÚ</h2>
 
-  <div class="menu" id="menu">
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
-      alt="Tacos al pastor"
-      onerror="this.style.display='none'">
-      <h3>Tacos al pastor</h3>
-      <p>Con piña, cebolla y cilantro.</p>
-      <div class="price">$18 MXN</div>
-      <button onclick="agregar(0)">Agregar al pedido</button>
-    </div>
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
-      alt="Tacos de bistec"
-      onerror="this.style.display='none'">
-      <h3>Tacos de bistec</h3>
-      <p>Carne de res recién preparada.</p>
-      <div class="price">$22 MXN</div>
-      <button onclick="agregar(1)">Agregar al pedido</button>
-    </div>
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"
-      alt="Quesadillas"
-      onerror="this.style.display='none'">
-      <h3>Quesadillas</h3>
-      <p>Con queso derretido.</p>
-      <div class="price">$35 MXN</div>
-      <button onclick="agregar(2)">Agregar al pedido</button>
-    </div>
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"
-      alt="Gringa"
-      onerror="this.style.display='none'">
-      <h3>Gringa</h3>
-      <p>Tortilla de harina, queso y pastor.</p>
-      <div class="price">$55 MXN</div>
-      <button onclick="agregar(3)">Agregar al pedido</button>
-    </div>
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=600"
-      alt="Torta"
-      onerror="this.style.display='none'">
-      <h3>Torta de pastor</h3>
-      <p>Con aguacate y verduras.</p>
-      <div class="price">$65 MXN</div>
-      <button onclick="agregar(4)">Agregar al pedido</button>
-    </div>
-
-    <div class="product">
-      <img class="product-image"
-      src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"
-      alt="Bebida"
-      onerror="this.style.display='none'">
-      <h3>Refresco</h3>
-      <p>Bebida fría de 600 ml.</p>
-      <div class="price">$25 MXN</div>
-      <button onclick="agregar(5)">Agregar al pedido</button>
-    </div>
-
+  <div class="categories">
+    <button class="active" onclick="filtrar('Todos', this)">Todos</button>
+    <button onclick="filtrar('Tacos', this)">Tacos</button>
+    <button onclick="filtrar('Especialidades', this)">Especialidades</button>
+    <button onclick="filtrar('Bebidas', this)">Bebidas</button>
   </div>
+
+  <div class="menu" id="menu"></div>
 
   <section class="cart">
     <h2>🛒 Tu pedido</h2>
@@ -315,32 +308,135 @@ footer {
       Total: $0 MXN
     </div>
 
-    <button class="order-button" onclick="enviar()">
-      Finalizar pedido por WhatsApp
-    </button>
+    <div class="cart-actions">
+      <button class="clear-button" onclick="vaciarCarrito()">
+        Vaciar carrito
+      </button>
+
+      <button onclick="enviar()">
+        Pedir por WhatsApp
+      </button>
+    </div>
   </section>
 
 </main>
 
 <footer>
   <p>© 2026 SANTO TACO | Página de demostración</p>
+  <p style="margin-top:8px">Hecho para disfrutar buenos tacos.</p>
 </footer>
 
 <script>
 
 const productos = [
-  {nombre:"Tacos al pastor", precio:18},
-  {nombre:"Tacos de bistec", precio:22},
-  {nombre:"Quesadillas", precio:35},
-  {nombre:"Gringa", precio:55},
-  {nombre:"Torta de pastor", precio:65},
-  {nombre:"Refresco", precio:25}
+  {
+    nombre: "Tacos al pastor",
+    descripcion: "Con piña, cebolla y cilantro.",
+    precio: 18,
+    categoria: "Tacos",
+    imagen: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
+  },
+  {
+    nombre: "Tacos de bistec",
+    descripcion: "Carne de res recién preparada.",
+    precio: 22,
+    categoria: "Tacos",
+    imagen: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"
+  },
+  {
+    nombre: "Tacos de pollo",
+    descripcion: "Pollo con verduras frescas.",
+    precio: 20,
+    categoria: "Tacos",
+    imagen: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600"
+  },
+  {
+    nombre: "Quesadillas",
+    descripcion: "Tortilla con queso derretido.",
+    precio: 35,
+    categoria: "Especialidades",
+    imagen: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"
+  },
+  {
+    nombre: "Gringa",
+    descripcion: "Tortilla de harina, queso y pastor.",
+    precio: 55,
+    categoria: "Especialidades",
+    imagen: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"
+  },
+  {
+    nombre: "Torta de pastor",
+    descripcion: "Con aguacate y verduras.",
+    precio: 65,
+    categoria: "Especialidades",
+    imagen: "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=600"
+  },
+  {
+    nombre: "Refresco",
+    descripcion: "Bebida fría de 600 ml.",
+    precio: 25,
+    categoria: "Bebidas",
+    imagen: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"
+  },
+  {
+    nombre: "Agua fresca",
+    descripcion: "Bebida fresca del día.",
+    precio: 22,
+    categoria: "Bebidas",
+    imagen: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?w=600"
+  }
 ];
 
 let pedido = [];
+let categoriaActual = "Todos";
+
+function mostrar() {
+  const menu = document.getElementById("menu");
+
+  const filtrados = categoriaActual === "Todos"
+    ? productos
+    : productos.filter(p => p.categoria === categoriaActual);
+
+  menu.innerHTML = filtrados.map(p => {
+    const i = productos.indexOf(p);
+
+    return `
+      <div class="product">
+        <img
+          class="product-image"
+          src="${p.imagen}"
+          alt="${p.nombre}"
+          loading="lazy"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        >
+
+        <div class="photo-fallback">🌮</div>
+
+        <h3>${p.nombre}</h3>
+        <p>${p.descripcion}</p>
+        <div class="price">$${p.precio} MXN</div>
+
+        <button onclick="agregar(${i})">
+          Agregar al pedido
+        </button>
+      </div>
+    `;
+  }).join("");
+}
+
+function filtrar(categoria, boton) {
+  categoriaActual = categoria;
+
+  document.querySelectorAll(".categories button").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  boton.classList.add("active");
+  mostrar();
+}
 
 function agregar(i) {
-  let producto = pedido.find(p => p.nombre === productos[i].nombre);
+  const producto = pedido.find(p => p.nombre === productos[i].nombre);
 
   if (producto) {
     producto.cantidad++;
@@ -361,6 +457,16 @@ function cambiarCantidad(i, cambio) {
     pedido.splice(i, 1);
   }
 
+  actualizar();
+}
+
+function vaciarCarrito() {
+  if (pedido.length === 0) {
+    alert("Tu carrito ya está vacío.");
+    return;
+  }
+
+  pedido = [];
   actualizar();
 }
 
@@ -425,6 +531,7 @@ function enviar() {
   window.open(url, "_blank");
 }
 
+mostrar();
 actualizar();
 
 </script>
