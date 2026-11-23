@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANTO TACO | Taquería</title>
+<title>SANTO TACO | El verdadero sabor mexicano</title>
 
 <style>
 * {
@@ -23,23 +22,23 @@ header {
   background: #101010;
   padding: 22px;
   text-align: center;
-  border-bottom: 2px solid #ff762b;
+  border-bottom: 3px solid #ff762b;
 }
 
 header h1 {
   color: #ff762b;
-  font-size: 34px;
+  font-size: 36px;
 }
 
 header p {
   color: #ccc;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .hero {
   text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #292018, #111);
+  padding: 75px 20px;
+  background: linear-gradient(135deg, #302117, #111);
 }
 
 .hero h2 {
@@ -53,7 +52,7 @@ header p {
 
 .hero p {
   color: #ccc;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .hero button {
@@ -62,16 +61,16 @@ header p {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
   padding: 45px 20px;
 }
 
 .section-title {
   color: #ff762b;
-  margin-bottom: 30px;
   text-align: center;
-  font-size: 28px;
+  font-size: 30px;
+  margin-bottom: 35px;
 }
 
 .menu {
@@ -82,10 +81,11 @@ header p {
 
 .product {
   background: #242424;
-  padding: 15px;
-  border-radius: 12px;
+  border: 1px solid #383838;
+  border-radius: 13px;
+  overflow: hidden;
   text-align: center;
-  border: 1px solid #333;
+  padding-bottom: 20px;
   transition: transform 0.2s;
 }
 
@@ -95,38 +95,39 @@ header p {
 
 .product-image {
   width: 100%;
-  height: 180px;
+  height: 190px;
   object-fit: cover;
-  border-radius: 9px;
-  margin-bottom: 15px;
+  display: block;
+  background: #383838;
 }
 
 .product h3 {
-  margin-bottom: 8px;
-  font-size: 19px;
+  margin: 18px 10px 8px;
+  font-size: 20px;
 }
 
 .product p {
   color: #aaa;
-  margin-bottom: 12px;
   font-size: 14px;
+  padding: 0 12px;
+  min-height: 34px;
 }
 
 .price {
   color: #ff762b;
-  font-size: 21px;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin: 15px 0;
 }
 
 button {
   background: #ff762b;
-  border: none;
   color: white;
-  padding: 10px 16px;
+  border: none;
   border-radius: 7px;
-  cursor: pointer;
+  padding: 11px 17px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 button:hover {
@@ -135,60 +136,80 @@ button:hover {
 
 .cart {
   background: #242424;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 28px;
+  border-radius: 14px;
   margin-top: 55px;
 }
 
 .cart h2 {
   color: #ff762b;
   margin-bottom: 20px;
+  font-size: 27px;
+}
+
+.empty {
+  color: #ccc;
+  padding: 12px 0;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   border-bottom: 1px solid #444;
-  padding: 14px 0;
+  padding: 16px 0;
 }
 
-.item button {
-  padding: 6px 11px;
-  margin: 0 3px;
+.item-info {
+  line-height: 1.7;
+}
+
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.item-controls button {
+  padding: 6px 12px;
 }
 
 .total {
-  text-align: right;
-  font-size: 23px;
   color: #ff762b;
+  font-size: 25px;
   font-weight: bold;
-  margin-top: 20px;
+  text-align: right;
+  margin-top: 25px;
 }
 
 .order-button {
   width: 100%;
-  margin-top: 20px;
-  padding: 15px;
-  font-size: 16px;
+  padding: 16px;
+  margin-top: 25px;
+  font-size: 17px;
 }
 
 footer {
-  background: #101010;
   text-align: center;
-  padding: 30px;
-  margin-top: 50px;
+  background: #101010;
   color: #aaa;
+  padding: 28px;
+  margin-top: 50px;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 600px) {
   .hero h2 {
     font-size: 30px;
   }
 
   .item {
-    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .total {
+    font-size: 21px;
   }
 }
 </style>
@@ -205,7 +226,7 @@ footer {
   <h2>¡Bienvenido a <span>SANTO TACO!</span></h2>
   <p>Buenos tacos, buenos momentos.</p>
   <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
-    Ver menú
+    VER MENÚ
   </button>
 </section>
 
@@ -213,12 +234,80 @@ footer {
 
   <h2 class="section-title">NUESTRO MENÚ</h2>
 
-  <div class="menu" id="menu"></div>
+  <div class="menu" id="menu">
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
+      alt="Tacos al pastor"
+      onerror="this.style.display='none'">
+      <h3>Tacos al pastor</h3>
+      <p>Con piña, cebolla y cilantro.</p>
+      <div class="price">$18 MXN</div>
+      <button onclick="agregar(0)">Agregar al pedido</button>
+    </div>
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
+      alt="Tacos de bistec"
+      onerror="this.style.display='none'">
+      <h3>Tacos de bistec</h3>
+      <p>Carne de res recién preparada.</p>
+      <div class="price">$22 MXN</div>
+      <button onclick="agregar(1)">Agregar al pedido</button>
+    </div>
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"
+      alt="Quesadillas"
+      onerror="this.style.display='none'">
+      <h3>Quesadillas</h3>
+      <p>Con queso derretido.</p>
+      <div class="price">$35 MXN</div>
+      <button onclick="agregar(2)">Agregar al pedido</button>
+    </div>
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"
+      alt="Gringa"
+      onerror="this.style.display='none'">
+      <h3>Gringa</h3>
+      <p>Tortilla de harina, queso y pastor.</p>
+      <div class="price">$55 MXN</div>
+      <button onclick="agregar(3)">Agregar al pedido</button>
+    </div>
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=600"
+      alt="Torta"
+      onerror="this.style.display='none'">
+      <h3>Torta de pastor</h3>
+      <p>Con aguacate y verduras.</p>
+      <div class="price">$65 MXN</div>
+      <button onclick="agregar(4)">Agregar al pedido</button>
+    </div>
+
+    <div class="product">
+      <img class="product-image"
+      src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"
+      alt="Bebida"
+      onerror="this.style.display='none'">
+      <h3>Refresco</h3>
+      <p>Bebida fría de 600 ml.</p>
+      <div class="price">$25 MXN</div>
+      <button onclick="agregar(5)">Agregar al pedido</button>
+    </div>
+
+  </div>
 
   <section class="cart">
     <h2>🛒 Tu pedido</h2>
 
-    <div id="lista">
+    <div id="lista" class="empty">
       Todavía no agregas productos.
     </div>
 
@@ -240,71 +329,18 @@ footer {
 <script>
 
 const productos = [
-  {
-    nombre: "Tacos al pastor",
-    descripcion: "Con piña, cebolla y cilantro.",
-    precio: 18,
-    imagen: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
-  },
-  {
-    nombre: "Tacos de bistec",
-    descripcion: "Carne de res recién preparada.",
-    precio: 22,
-    imagen: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600"
-  },
-  {
-    nombre: "Quesadillas",
-    descripcion: "Con queso derretido.",
-    precio: 35,
-    imagen: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600"
-  },
-  {
-    nombre: "Gringa",
-    descripcion: "Tortilla de harina, queso y pastor.",
-    precio: 55,
-    imagen: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600"
-  },
-  {
-    nombre: "Torta de pastor",
-    descripcion: "Con aguacate y verduras.",
-    precio: 65,
-    imagen: "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=600"
-  },
-  {
-    nombre: "Refresco",
-    descripcion: "Bebida fría de 600 ml.",
-    precio: 25,
-    imagen: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600"
-  }
+  {nombre:"Tacos al pastor", precio:18},
+  {nombre:"Tacos de bistec", precio:22},
+  {nombre:"Quesadillas", precio:35},
+  {nombre:"Gringa", precio:55},
+  {nombre:"Torta de pastor", precio:65},
+  {nombre:"Refresco", precio:25}
 ];
 
 let pedido = [];
 
-function mostrar() {
-  const menu = document.getElementById("menu");
-
-  menu.innerHTML = productos.map((p, i) => `
-    <div class="product">
-      <img
-        class="product-image"
-        src="${p.imagen}"
-        alt="${p.nombre}"
-        loading="lazy"
-      >
-      <h3>${p.nombre}</h3>
-      <p>${p.descripcion}</p>
-      <div class="price">$${p.precio} MXN</div>
-      <button onclick="agregar(${i})">
-        Agregar al pedido
-      </button>
-    </div>
-  `).join("");
-}
-
 function agregar(i) {
-  let producto = pedido.find(
-    p => p.nombre === productos[i].nombre
-  );
+  let producto = pedido.find(p => p.nombre === productos[i].nombre);
 
   if (producto) {
     producto.cantidad++;
@@ -333,24 +369,27 @@ function actualizar() {
 
   if (pedido.length === 0) {
     lista.textContent = "Todavía no agregas productos.";
+    lista.className = "empty";
   } else {
+    lista.className = "";
+
     lista.innerHTML = pedido.map((p, i) => `
       <div class="item">
-        <div>
+        <div class="item-info">
           <strong>${p.nombre}</strong><br>
           $${p.precio} x ${p.cantidad}
         </div>
 
-        <div>
-          <button onclick="cambiarCantidad(${i}, -1)">−</button>
+        <div class="item-controls">
+          <button onclick="cambiarCantidad(${i},-1)">−</button>
           <strong>${p.cantidad}</strong>
-          <button onclick="cambiarCantidad(${i}, 1)">+</button>
+          <button onclick="cambiarCantidad(${i},1)">+</button>
         </div>
       </div>
     `).join("");
   }
 
-  let total = pedido.reduce(
+  const total = pedido.reduce(
     (s, p) => s + p.precio * p.cantidad,
     0
   );
@@ -372,22 +411,20 @@ function enviar() {
       " - $" + (p.precio * p.cantidad) + "\n";
   });
 
-  let total = pedido.reduce(
+  const total = pedido.reduce(
     (s, p) => s + p.precio * p.cantidad,
     0
   );
 
   mensaje += "\nTotal: $" + total + " MXN";
 
-  let telefono = "524426785804";
-
-  let url = "https://wa.me/" + telefono +
+  const telefono = "524426785804";
+  const url = "https://wa.me/" + telefono +
     "?text=" + encodeURIComponent(mensaje);
 
   window.open(url, "_blank");
 }
 
-mostrar();
 actualizar();
 
 </script>
