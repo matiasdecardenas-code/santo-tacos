@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANTO TACO | Los mejores tacos</title>
+<title>SANTO TACO | El sabor del barrio</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:Arial,sans-serif;background:#111;color:white}
 header{background:#171717;padding:20px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #333}
 .logo{font-size:25px;font-weight:bold;color:#ff8a24}
-nav{display:flex;gap:22px;flex-wrap:wrap}
+nav{display:flex;gap:18px;flex-wrap:wrap}
 nav a{color:white;text-decoration:none;font-size:14px}
 nav a:hover{color:#ff8a24}
 .hero{min-height:430px;padding:90px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(#0009,#000b),url("https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85") center/cover}
@@ -25,14 +26,16 @@ section{padding:65px 7%}
 .categories{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
 .category{background:#292929;color:white;border:1px solid #444;padding:10px 18px;border-radius:20px;cursor:pointer}
 .category.active,.category:hover{background:#ff8a24;color:#111;border-color:#ff8a24}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-.product{background:#1c1c1c;border-radius:12px;overflow:hidden;border:1px solid #333}
-.product img{width:100%;height:175px;object-fit:cover}
-.product-info{padding:17px}
-.product-info h3{margin-bottom:8px}
-.product-info p{color:#aaa;font-size:14px;margin-bottom:12px}
+.products,.combos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.product,.combo{background:#1c1c1c;border-radius:12px;overflow:hidden;border:1px solid #333}
+.product img,.combo img{width:100%;height:175px;object-fit:cover}
+.product-info,.combo-info{padding:17px}
+.product-info h3,.combo-info h3{margin-bottom:8px}
+.product-info p,.combo-info p{color:#aaa;font-size:14px;margin-bottom:12px;line-height:1.5}
 .price{color:#ff8a24;font-size:20px;font-weight:bold;margin-bottom:13px}
 .add{width:100%;padding:11px;background:#ff8a24;border:none;border-radius:6px;font-weight:bold;cursor:pointer}
+.add:hover{background:#ffad5c}
+.combo-tag{display:inline-block;background:#ff8a24;color:#111;padding:5px 9px;border-radius:5px;font-size:12px;font-weight:bold;margin-bottom:10px}
 .cart{max-width:750px;margin:auto;background:#1c1c1c;border:1px solid #333;padding:25px;border-radius:12px}
 .cart-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid #333}
 .quantity{display:flex;align-items:center;gap:10px}
@@ -50,12 +53,13 @@ footer{background:#090909;padding:30px 15px;text-align:center;color:#aaa}
 footer strong{color:#ff8a24}
 @media(max-width:650px){
 header{flex-direction:column;gap:15px}
-nav{justify-content:center;gap:15px}
+nav{justify-content:center;gap:13px}
 section{padding:50px 5%}
 .cart-item{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -63,8 +67,9 @@ section{padding:50px 5%}
 <nav>
 <a href="#inicio">Inicio</a>
 <a href="#menu">Menú</a>
+<a href="#promociones">Promos</a>
 <a href="#carrito">Carrito</a>
-<a href="#informacion">Información</a>
+<a href="#informacion">Contacto</a>
 </nav>
 </header>
 
@@ -74,24 +79,35 @@ section{padding:50px 5%}
 <a href="#menu" class="btn">Ver nuestro menú</a>
 </section>
 
+<section id="promociones">
+<h2 class="section-title">🔥 Promociones y combos</h2>
+<p class="section-subtitle">¡Disfruta más sabor por menos!</p>
+
+<div class="combos" id="combos"></div>
+</section>
+
 <section id="menu">
 <h2 class="section-title">Nuestro menú</h2>
 <p class="section-subtitle">Encuentra tu próximo taco favorito.</p>
+
 <div class="categories">
 <button class="category active" onclick="filterProducts('Todos',this)">Todos</button>
 <button class="category" onclick="filterProducts('Tacos',this)">Tacos</button>
 <button class="category" onclick="filterProducts('Especialidades',this)">Especialidades</button>
 <button class="category" onclick="filterProducts('Bebidas',this)">Bebidas</button>
 </div>
+
 <div class="products" id="products"></div>
 </section>
 
 <section id="carrito">
 <h2 class="section-title">Tu pedido</h2>
 <p class="section-subtitle">Revisa lo que vas a ordenar.</p>
+
 <div class="cart">
 <div id="cart-items"><p class="empty">Todavía no agregas productos.</p></div>
 <div class="cart-total" id="total">Total: $0 MXN</div>
+
 <div class="cart-actions">
 <button class="btn" onclick="sendOrder()">Pedir por WhatsApp</button>
 <button class="category" onclick="clearCart()">Vaciar carrito</button>
@@ -102,6 +118,7 @@ section{padding:50px 5%}
 <section id="informacion">
 <h2 class="section-title">Visítanos</h2>
 <p class="section-subtitle">Queremos recibirte pronto.</p>
+
 <div class="info-grid">
 <div class="info-card">
 <div class="emoji">📍</div>
@@ -109,11 +126,13 @@ section{padding:50px 5%}
 <p>Querétaro, Qro., México.</p>
 <a href="https://www.google.com/maps/search/?api=1&query=Quer%C3%A9taro%2C+Qro." target="_blank">Ver en Google Maps</a>
 </div>
+
 <div class="info-card">
 <div class="emoji">🕒</div>
 <h3>Horarios</h3>
 <p>Lunes a viernes<br>2:00 PM – 10:00 PM<br><br>Sábado y domingo<br>2:00 PM – 11:00 PM</p>
 </div>
+
 <div class="info-card">
 <div class="emoji">📱</div>
 <h3>Contacto</h3>
@@ -141,12 +160,19 @@ const products=[
 {name:"Agua fresca",category:"Bebidas",price:22,image:"https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80",description:"Agua fresca del día."}
 ];
 
+const combos=[
+{name:"Combo Taquero",price:99,description:"5 tacos al pastor + 1 refresco.",image:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=700&q=80"},
+{name:"Combo Gringa",price:69,description:"1 gringa + 1 agua fresca.",image:"https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&w=700&q=80"},
+{name:"Combo Especial",price:89,description:"3 tacos al pastor + 1 quesadilla.",image:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=700&q=80"}
+];
+
 let cart=[];
 
 function showProducts(category="Todos"){
 const container=document.getElementById("products");
 container.innerHTML="";
 const filtered=category==="Todos"?products:products.filter(p=>p.category===category);
+
 filtered.forEach(product=>{
 const index=products.indexOf(product);
 container.innerHTML+=`
@@ -156,7 +182,25 @@ container.innerHTML+=`
 <h3>${product.name}</h3>
 <p>${product.description}</p>
 <div class="price">$${product.price} MXN</div>
-<button class="add" onclick="addToCart(${index})">Agregar al carrito</button>
+<button class="add" onclick="addProduct(${index})">Agregar al carrito</button>
+</div>
+</div>`;
+});
+}
+
+function showCombos(){
+const container=document.getElementById("combos");
+container.innerHTML="";
+combos.forEach((combo,index)=>{
+container.innerHTML+=`
+<div class="combo">
+<img src="${combo.image}" alt="${combo.name}" onerror="this.style.display='none'">
+<div class="combo-info">
+<span class="combo-tag">PROMOCIÓN</span>
+<h3>${combo.name}</h3>
+<p>${combo.description}</p>
+<div class="price">$${combo.price} MXN</div>
+<button class="add" onclick="addCombo(${index})">Agregar combo al carrito</button>
 </div>
 </div>`;
 });
@@ -168,11 +212,20 @@ button.classList.add("active");
 showProducts(category);
 }
 
-function addToCart(index){
+function addProduct(index){
 const product=products[index];
-const found=cart.find(item=>item.name===product.name);
+addItem(product.name,product.price);
+}
+
+function addCombo(index){
+const combo=combos[index];
+addItem(combo.name,combo.price);
+}
+
+function addItem(name,price){
+const found=cart.find(item=>item.name===name);
 if(found)found.quantity++;
-else cart.push({...product,quantity:1});
+else cart.push({name,price,quantity:1});
 renderCart();
 }
 
@@ -185,8 +238,13 @@ renderCart();
 function renderCart(){
 const container=document.getElementById("cart-items");
 container.innerHTML="";
-if(cart.length===0)container.innerHTML='<p class="empty">Todavía no agregas productos.</p>';
+
+if(cart.length===0){
+container.innerHTML='<p class="empty">Todavía no agregas productos.</p>';
+}
+
 let total=0;
+
 cart.forEach((item,index)=>{
 total+=item.price*item.quantity;
 container.innerHTML+=`
@@ -200,25 +258,38 @@ container.innerHTML+=`
 <strong>$${item.price*item.quantity} MXN</strong>
 </div>`;
 });
+
 document.getElementById("total").textContent="Total: $"+total+" MXN";
 }
 
-function clearCart(){cart=[];renderCart();}
+function clearCart(){
+cart=[];
+renderCart();
+}
 
 function sendOrder(){
-if(cart.length===0){alert("Primero agrega productos a tu carrito.");return;}
+if(cart.length===0){
+alert("Primero agrega productos a tu carrito.");
+return;
+}
+
 let message="¡Hola! Quiero hacer este pedido en SANTO TACO:\n\n";
 let total=0;
+
 cart.forEach(item=>{
 message+=`${item.quantity} x ${item.name} - $${item.price*item.quantity} MXN\n`;
 total+=item.price*item.quantity;
 });
+
 message+=`\nTotal: $${total} MXN\n\n¡Gracias!`;
+
 window.open("https://wa.me/524426785804?text="+encodeURIComponent(message),"_blank");
 }
 
 showProducts();
+showCombos();
 renderCart();
 </script>
+
 </body>
 </html>
