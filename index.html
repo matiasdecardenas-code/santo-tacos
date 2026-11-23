@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,13 +38,13 @@ header p {
 
 .hero {
   text-align: center;
-  padding: 65px 20px;
+  padding: 80px 20px;
   background: linear-gradient(135deg, #292018, #111);
 }
 
 .hero h2 {
-  font-size: 38px;
-  margin-bottom: 12px;
+  font-size: 42px;
+  margin-bottom: 15px;
 }
 
 .hero span {
@@ -55,39 +56,54 @@ header p {
   font-size: 17px;
 }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 35px 20px;
+.hero button {
+  margin-top: 25px;
+  padding: 13px 25px;
 }
 
-h2.section-title {
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 45px 20px;
+}
+
+.section-title {
   color: #ff762b;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
+  font-size: 28px;
 }
 
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
 }
 
 .product {
   background: #242424;
-  padding: 20px;
+  padding: 15px;
   border-radius: 12px;
   text-align: center;
   border: 1px solid #333;
+  transition: transform 0.2s;
 }
 
-.product .emoji {
-  font-size: 55px;
-  margin-bottom: 12px;
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 9px;
+  margin-bottom: 15px;
 }
 
 .product h3 {
   margin-bottom: 8px;
+  font-size: 19px;
 }
 
 .product p {
@@ -98,7 +114,7 @@ h2.section-title {
 
 .price {
   color: #ff762b;
-  font-size: 20px;
+  font-size: 21px;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -119,9 +135,9 @@ button:hover {
 
 .cart {
   background: #242424;
-  padding: 22px;
+  padding: 25px;
   border-radius: 12px;
-  margin-top: 45px;
+  margin-top: 55px;
 }
 
 .cart h2 {
@@ -145,7 +161,7 @@ button:hover {
 
 .total {
   text-align: right;
-  font-size: 22px;
+  font-size: 23px;
   color: #ff762b;
   font-weight: bold;
   margin-top: 20px;
@@ -154,34 +170,26 @@ button:hover {
 .order-button {
   width: 100%;
   margin-top: 20px;
-  padding: 14px;
+  padding: 15px;
   font-size: 16px;
 }
 
 footer {
   background: #101010;
   text-align: center;
-  padding: 25px;
-  margin-top: 45px;
+  padding: 30px;
+  margin-top: 50px;
   color: #aaa;
 }
 
 @media(max-width: 500px) {
   .hero h2 {
-    font-size: 29px;
+    font-size: 30px;
   }
 
   .item {
     flex-wrap: wrap;
   }
-}
-
-.product-image {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 9px;
-  margin-bottom: 15px;
 }
 </style>
 </head>
@@ -196,6 +204,9 @@ footer {
 <section class="hero">
   <h2>¡Bienvenido a <span>SANTO TACO!</span></h2>
   <p>Buenos tacos, buenos momentos.</p>
+  <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+    Ver menú
+  </button>
 </section>
 
 <main class="container">
@@ -216,7 +227,7 @@ footer {
     </div>
 
     <button class="order-button" onclick="enviar()">
-      Finalizar pedido
+      Finalizar pedido por WhatsApp
     </button>
   </section>
 
@@ -267,16 +278,19 @@ const productos = [
   }
 ];
 
-
 let pedido = [];
-
 
 function mostrar() {
   const menu = document.getElementById("menu");
 
   menu.innerHTML = productos.map((p, i) => `
     <div class="product">
-      <img class="product-image" src="${p.imagen}" alt="${p.nombre}">
+      <img
+        class="product-image"
+        src="${p.imagen}"
+        alt="${p.nombre}"
+        loading="lazy"
+      >
       <h3>${p.nombre}</h3>
       <p>${p.descripcion}</p>
       <div class="price">$${p.precio} MXN</div>
@@ -286,7 +300,6 @@ function mostrar() {
     </div>
   `).join("");
 }
-
 
 function agregar(i) {
   let producto = pedido.find(
@@ -367,69 +380,11 @@ function enviar() {
   mensaje += "\nTotal: $" + total + " MXN";
 
   let telefono = "524426785804";
+
   let url = "https://wa.me/" + telefono +
     "?text=" + encodeURIComponent(mensaje);
 
   window.open(url, "_blank");
-}
-
-  let mensaje = "¡Hola! Quiero hacer este pedido:\n\n";
-
-  pedido.forEach(p => {
-    mensaje += p.nombre + " x" + p.cantidad +
-      " - $" + (p.precio * p.cantidad) + "\n";
-  });
-
-  let total = pedido.reduce(
-    (s, p) => s + p.precio * p.cantidad,
-    0
-  );
-
-  mensaje += "\nTotal: $" + total + " MXN";
-
-  let telefono = "524426785804";
-  let url = "https://wa.me/" + telefono +
-    "?text=" + encodeURIComponent(mensaje);
-
-  window.open(url, "_blank");
-}
-
-  let mensaje = "¡Hola! Quiero hacer este pedido:\n\n";
-
-  pedido.forEach(p => {
-    mensaje += p.nombre + " x" + p.cantidad +
-      " - $" + (p.precio * p.cantidad) + "\n";
-  });
-
-  let total = pedido.reduce(
-    (s, p) => s + p.precio * p.cantidad,
-    0
-  );
-
-  mensaje += "\nTotal: $" + total + " MXN";
-
-  let telefono = "524426785804";
-  let url = "https://wa.me/" + telefono +
-    "?text=" + encodeURIComponent(mensaje);
-
-  window.open(url, "_blank");
-}
-
-  let mensaje = "¡Hola! Este es mi pedido:\n\n";
-
-  pedido.forEach(p => {
-    mensaje += p.nombre + " x" + p.cantidad +
-      " - $" + (p.precio * p.cantidad) + "\n";
-  });
-
-  let total = pedido.reduce(
-    (s, p) => s + p.precio * p.cantidad,
-    0
-  );
-
-  mensaje += "\nTotal: $" + total + " MXN";
-
-  alert(mensaje + "\n\nEsta es una demostración.");
 }
 
 mostrar();
