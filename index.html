@@ -341,6 +341,69 @@ function enviar() {
     return;
   }
 
+  let mensaje = "¡Hola! Quiero hacer este pedido:\n\n";
+
+  pedido.forEach(p => {
+    mensaje += p.nombre + " x" + p.cantidad +
+      " - $" + (p.precio * p.cantidad) + "\n";
+  });
+
+  let total = pedido.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  mensaje += "\nTotal: $" + total + " MXN";
+
+  let telefono = "524426785804";
+  let url = "https://wa.me/" + telefono +
+    "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
+}
+
+  let mensaje = "¡Hola! Quiero hacer este pedido:\n\n";
+
+  pedido.forEach(p => {
+    mensaje += p.nombre + " x" + p.cantidad +
+      " - $" + (p.precio * p.cantidad) + "\n";
+  });
+
+  let total = pedido.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  mensaje += "\nTotal: $" + total + " MXN";
+
+  let telefono = "524426785804";
+  let url = "https://wa.me/" + telefono +
+    "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
+}
+
+  let mensaje = "¡Hola! Quiero hacer este pedido:\n\n";
+
+  pedido.forEach(p => {
+    mensaje += p.nombre + " x" + p.cantidad +
+      " - $" + (p.precio * p.cantidad) + "\n";
+  });
+
+  let total = pedido.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  mensaje += "\nTotal: $" + total + " MXN";
+
+  let telefono = "524426785804";
+  let url = "https://wa.me/" + telefono +
+    "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
+}
+
   let mensaje = "¡Hola! Este es mi pedido:\n\n";
 
   pedido.forEach(p => {
